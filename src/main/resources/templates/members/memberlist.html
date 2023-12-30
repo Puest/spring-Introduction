@@ -11,9 +11,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="member : ${members}">
-                <td th:text="${member.id}"></td>
-                <td th:text="${member.name}"></td>
+            <tr th:each="member : ${members}">  <!--${members}는 model에서 key=members로 얻어온 member 리스트-->
+                <td th:text="${member.id}"></td>   <!--${member.id}는 member 객체의 id-->
+                <td th:text="${member.name}"></td>  <!--${member.name}는 member 객체의 name-->
             </tr>
             </tbody>
         </table>

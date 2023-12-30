@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+@Transactional  //JPA를 활용한 모든 데이터 변경은 트랜젝션 어노테이션을 해야한다
 public class MemberService {
     //메모리 회원 리퍼지토리 직접 생성(OCP, DIP위반)
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -18,20 +18,18 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    /*
-    회원 가입
-    */
+    /*회원 가입*/
     public Long join(Member member) {
 
-//        long start = System.currentTimeMillis();
+//        long start = System.currentTimeMillis();  // 회원가입 시작 시각
 //        try {
         //같은 이름(중복) 회원 X
         vaildateDuplicateMember(member);    //중복 회원 검증
         memberRepository.save(member);      //중복 회원이 아니면 저장
         return member.getId();
 //        } finally {
-//            long finish = System.currentTimeMillis();
-//            long timeMs = finish - start;
+//            long finish = System.currentTimeMillis(); // 회원가입 로직이 끝날 때 시각
+//            long timeMs = finish - start;         // 회원가입 호출 시간
 //            System.out.println("join = " + timeMs + "ms");
 //        }
     }
@@ -43,9 +41,7 @@ public class MemberService {
         });
     }
 
-    /*
-    전체 회원 조회
-    */
+    /*전체 회원 조회*/
     public List<Member> findMembers() {
 //        long start = System.currentTimeMillis();
 //        try {
